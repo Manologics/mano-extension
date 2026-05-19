@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mano</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      width: 300px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .popup-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .popup-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .popup-version {
+      font-size: 11px;
+      color: #888;
+    }
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4caf50;
+      margin-left: auto;
+    }
+    .open-sidebar-btn {
+      width: 100%;
+      padding: 10px;
+      background: #6366f1;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-bottom: 8px;
+    }
+    .open-sidebar-btn:hover {
+      background: #4f46e5;
+    }
+    .current-page {
+      font-size: 11px;
+      color: #888;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup-header">
+    <img src="icons/icon48.png" alt="Mano" width="24" height="24">
+    <span class="popup-title">Mano</span>
+    <span class="popup-version">v13.0.0</span>
+    <div class="status-indicator" id="statusDot"></div>
+  </div>
+
+  <button class="open-sidebar-btn" id="openSidebarBtn">
+    Open AI Sidebar
+  </button>
+
+  <div class="current-page" id="currentPage">Loading...</div>
+
+  <script>
+    document.getElementById('openSidebarBtn').addEventListener('click', () => {
+      chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+        if (tabs[0]) {
+          chrome.sidePanel.open({ windowId: tabs[0].windowId }).then(() => {
+            window.close();
+          });
+        }
+      });
+    });
+
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      if (tabs[0]) {
+        const url = tabs[0].url || '';
+        document.getElementById('currentPage').textContent = url;
+      }
+    });
+  </script>
+</body>
+</html>
