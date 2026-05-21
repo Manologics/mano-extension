@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mano</title>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mano</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     body {
@@ -54,39 +54,25 @@
       text-overflow: ellipsis;
       margin-top: 8px;
     }
-  </style>
-</head>
-<body>
-  <div class="popup-header">
-    <img src="icons/icon48.png" alt="Mano" width="24" height="24">
-    <span class="popup-title">Mano</span>
-    <span class="popup-version">v13.0.0</span>
-    <div class="status-indicator" id="statusDot"></div>
-  </div>
+    </style>
+  </head>
+  <body>
+    <div class="popup-header">
+      <img src="icons/icon48.png" alt="Mano" width="24" height="24">
+      <span class="popup-title">Mano</span>span>
+      <span class="popup-version">v13.0.0</span>span>
+      <div class="status-indicator" id="statusDot"></div>div>
+    </div>div>
 
-  <button class="open-sidebar-btn" id="openSidebarBtn">
-    Open AI Sidebar
-  </button>
+    <button class="open-sidebar-btn" id="openSidebarBtn">
+      Open AI Sidebar
+    </button>button>
 
-  <div class="current-page" id="currentPage">Loading...</div>
+    <div class="current-page" id="currentPage">Loading...</div>div>
 
-  <script>
-    document.getElementById('openSidebarBtn').addEventListener('click', () => {
-      chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-        if (tabs[0]) {
-          chrome.sidePanel.open({ windowId: tabs[0].windowId }).then(() => {
-            window.close();
-          });
-        }
-      });
-    });
-
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-      if (tabs[0]) {
-        const url = tabs[0].url || '';
-        document.getElementById('currentPage').textContent = url;
-      }
-    });
-  </script>
-</body>
-</html>
+    <script src="popup.js"></script>
+  </body>
+</html>html>
+  </body>
+  </style></title>
+  </head>
